@@ -1,7 +1,8 @@
-from tkinter import *
+from tkinter import*
 from tkinter import ttk
-
-
+from tkinter.filedialog import*
+import fileinput
+from translate import Translator
 class calculator:
     def getInput(self):
         self.userInput = self.entry.get()
@@ -78,18 +79,58 @@ class calculator:
         command = lambda: self.evaluate())
         bEquals.grid(row = 5, column = 3)
        
-        
-
-
-
-
-
-
 root = Tk()
 root.geometry("240x444")
-
-
-
-
+root.title("Calculator")
 calculator(root)
 root.mainloop()
+
+win=Tk()
+win.title("Translator")
+win.geometry('600x500')
+win.configure(bg='white')
+
+def Russian():
+    word = E1.get()
+    translator=Translator(to_lang='Russian')
+    translation = translator.translate(word)
+    l2=Label(win,text=f'translated word : {translation}',font=('Arial Bold',12),fg='Red')
+    l2.place(x=5, y=180)
+
+def German():
+    word = E1.get()
+    translator = Translator(to_lang='German')
+    translation = translator.translate(word)
+    l2 = Label(win, text=f'translated word : {translation}', font=('Arial  Bold', 12), fg='Red')
+    l2.place(x=5,y=200)
+def Estonian():
+    word = E1.get()
+    translator = Translator(to_lang='Estonian')
+    translation = translator.translate(word)
+    l2 = Label(win, text=f'translated word : {translation}', font=('Arial Bold', 12), fg='Red')
+    l2.place(x=5,y=220)
+def Chinese():
+    word = E1.get()
+    translator = Translator(to_lang='Chinese')
+    translation = translator.translate(word)
+    l2 = Label(win, text=f'translated word : {translation}', font=('Arial Bold', 12), fg='Red')
+    l2.place(x=5, y=240)
+
+
+txt=StringVar()
+l1=Label(win,text="Enter your text Here!!")
+l1.place(x=40,y=3)
+l3=Label(win,text="Translation:",font=('Bold',10))
+l3.place(x=5,y=160)
+E1=Entry(win,textvariable=txt,width=23,font=('Arial Bold',15),bg="white")
+E1.place(x=17,y=20)
+Btn1=Button(win,text='Russian',padx=8,pady=8,bg="powder blue",width=6,command=Russian)
+Btn1.place(x=5,y=55)
+Btn2=Button(win,text='German',padx=8,pady=8,bg="yellow",width=6,command=German)
+Btn2.place(x=75,y=55)
+Btn3=Button(win,text='Estonian',padx=8,pady=8,bg="blue",width=6,command=Estonian)
+Btn3.place(x=145,y=55)
+Btn6=Button(win,text='Chinese',padx=8,pady=8,bg="orange",width=6,command=Chinese)
+Btn6.place(x=75,y=100)
+win.mainloop()
+
